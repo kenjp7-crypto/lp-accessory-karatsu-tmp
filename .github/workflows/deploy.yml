@@ -21,11 +21,10 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           SITE_NAME="${REPO_NAME}"
 
-          # サイトが存在するか確認、なければ作成
+          # サイトが存在するか確認、なければ作成(account-slugを指定せずデフォルトチームを使う)
           if ! netlify api getSite --data "{\"site_id\": \"${SITE_NAME}\"}" > /dev/null 2>&1; then
             echo "Creating new site: ${SITE_NAME}"
-            netlify sites:create --name "${SITE_NAME}" --account-slug kenjp7-crypto || true
+            netlify sites:create --name "${SITE_NAME}" || true
           fi
 
-          # デプロイ実行(サイト名をそのままターゲットに)
           netlify deploy --prod --dir="." --site="${SITE_NAME}" --auth="${NETLIFY_AUTH_TOKEN}"
