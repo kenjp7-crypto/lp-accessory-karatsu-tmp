@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手仕事アクセサリー工房 | 唐津</title>
+<style>
+  :root{
+    --terracotta:#C97D5D;
+    --terracotta-deep:#A8623F;
+    --cream:#F5EFE6;
+    --cream-deep:#EDE3D3;
+    --green:#4A5D45;
+    --ink:#3A342E;
+    --gray:#8A7F72;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Hiragino Mincho ProN","Hiragino Sans",serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.9;
+  }
+  img,svg{display:block;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  .sans{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;}
+
+  header{
+    padding:20px 0;
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    max-width:920px;margin:0 auto;padding:0 24px;
+  }
+  .logo{font-size:1.15rem;font-weight:700;color:var(--ink);letter-spacing:.08em;}
+  .logo small{
+    display:block;font-size:.68rem;color:var(--terracotta-deep);
+    letter-spacing:.15em;margin-top:4px;font-family:"Hiragino Sans",sans-serif;
+  }
+
+  .hero{
+    position:relative;
+    padding:40px 0 70px;
+    text-align:center;
+  }
+  .hero-deco{
+    width:56px;height:2px;background:var(--terracotta);
+    margin:0 auto 28px;
+    position:relative;
+  }
+  .hero-deco::before, .hero-deco::after{
+    content:"";position:absolute;top:-3px;width:8px;height:8px;
+    border-radius:50%;background:var(--terracotta);
+  }
+  .hero-deco::before{left:-4px;}
+  .hero-deco::after{right:-4px;}
+  .hero h1{
+    font-size:2.1rem;font-weight:700;line-height:1.7;
+    color:var(--ink);letter-spacing:.03em;
+  }
+  .hero h1 .accent{color:var(--terracotta-deep);}
+  .hero p.sub{
+    font-family:"Hiragino Sans",sans-serif;
+    font-size:.95rem;color:var(--gray);margin-top:22px;
+    max-width:420px;margin-left:auto;margin-right:auto;
+  }
+  .hero-location{
+    font-family:"Hiragino Sans",sans-serif;
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:24px;font-size:.82rem;color:var(--green);
+    background:rgba(74,93,69,.08);padding:6px 16px;border-radius:99px;
+  }
+  .hero-cta{
+    margin-top:32px;
+  }
+  .btn-primary{
+    font-family:"Hiragino Sans",sans-serif;
+    display:inline-block;
+    background:var(--terracotta);color:#fff;font-weight:700;
+    padding:15px 36px;border-radius:4px;font-size:.92rem;letter-spacing:.04em;
+    box-shadow:0 6px 16px rgba(201,125,93,.3);
+  }
+
+  section{padding:64px 0;}
+  .section-head{text-align:center;max-width:520px;margin:0 auto 44px;}
+  .eyebrow{
+    font-family:"Hiragino Sans",sans-serif;
+    color:var(--terracotta-deep);font-weight:700;font-size:.72rem;
+    letter-spacing:.2em;text-transform:uppercase;
+  }
+  .section-head h2{
+    font-size:1.5rem;font-weight:700;color:var(--ink);margin-top:12px;
+  }
+  .section-head p{
+    font-family:"Hiragino Sans",sans-serif;
+    color:var(--gray);margin-top:12px;font-size:.88rem;
+  }
+
+  /* Story */
+  .story-section{background:var(--white);}
+  .story-content{
+    display:flex;flex-direction:column;gap:20px;
+    max-width:560px;margin:0 auto;
+  }
+  .story-content p{
+    font-size:.98rem;color:var(--ink);
+  }
+  .story-signature{
+    font-family:"Hiragino Sans",sans-serif;
+    text-align:right;font-size:.85rem;color:var(--gray);margin-top:8px;
+  }
+
+  /* Gallery */
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  }
+  .gallery-item{
+    aspect-ratio:1;
+    background:linear-gradient(135deg, var(--cream-deep), var(--terracotta) 140%);
+    border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .gallery-item svg{opacity:.85;}
+  .gallery-item .label{
+    position:absolute;bottom:10px;left:12px;
+    font-family:"Hiragino Sans",sans-serif;
+    font-size:.68rem;color:#fff;font-weight:700;
+    text-shadow:0 1px 3px rgba(0,0,0,.3);
+  }
+
+  /* Craft values */
+  .value-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  }
+  .value-card{
+    text-align:center;
+  }
+  .value-icon{
+    width:64px;height:64px;border-radius:50%;
+    background:var(--cream-deep);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 18px;
+  }
+  .value-card h3{font-size:1rem;font-weight:700;margin-bottom:10px;color:var(--ink);}
+  .value-card p{
+    font-family:"Hiragino Sans",sans-serif;
+    font-size:.82rem;color:var(--gray);
+  }
+
+  /* Shop info */
+  .shop-section{background:var(--white);}
+  .shop-info{
+    display:grid;grid-template-columns:1fr;gap:0;
+    border-top:1px solid var(--cream-deep);
+    max-width:520px;margin:0 auto;
+  }
+  .shop-row{
+    display:grid;grid-template-columns:100px 1fr;gap:20px;
+    padding:20px 0;border-bottom:1px solid var(--cream-deep);
+  }
+  .shop-row .label{
+    font-family:"Hiragino Sans",sans-serif;
+    font-size:.8rem;color:var(--terracotta-deep);font-weight:700;letter-spacing:.05em;
+  }
+  .shop-row .value{
+    font-family:"Hiragino Sans",sans-serif;
+    font-size:.92rem;color:var(--ink);
+  }
+  .shop-row .value small{
+    display:block;color:var(--gray);font-size:.8rem;margin-top:4px;
+  }
+
+  /* Voice */
+  .voice-section{
+    background:var(--cream-deep);
+  }
+  .voice-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+  }
+  .voice-card{
+    background:var(--white);border-radius:8px;padding:26px 24px;
+    position:relative;
+  }
+  .voice-card::before{
+    content:"”";
+    position:absolute;top:8px;left:16px;
+    font-size:2.5rem;color:var(--terracotta);opacity:.25;
+    font-family:Georgia,serif;
+  }
+  .voice-card p{
+    font-size:.9rem;color:var(--ink);margin-top:16px;
+  }
+  .voice-name{
+    font-family:"Hiragino Sans",sans-serif;
+    font-size:.78rem;color:var(--gray);margin-top:14px;font-weight:600;
+  }
+
+  /* Final CTA */
+  .final-cta{
+    text-align:center;padding:80px 0;
+  }
+  .final-cta h2{
+    font-size:1.6rem;font-weight:700;color:var(--ink);margin-bottom:16px;
+  }
+  .final-cta p{
+    font-family:"Hiragino Sans",sans-serif;
+    color:var(--gray);margin-bottom:32px;font-size:.9rem;
+  }
+
+  footer{
+    background:var(--ink);color:#B5AA9C;
+    text-align:center;padding:26px 24px;font-size:.75rem;
+    font-family:"Hiragino Sans",sans-serif;
+  }
+
+  @media(max-width:820px){
+    .hero h1{font-size:1.6rem;}
+    .value-grid{grid-template-columns:1fr;gap:36px;}
+    .voice-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .shop-row{grid-template-columns:1fr;gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">手仕事アクセサリー工房<small>KARATSU HANDMADE</small></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-deco"></div>
+    <h1>唐津の海と土から生まれる、<br><span class="accent">ひとつだけ</span>のアクセサリー。</h1>
+    <p class="sub">すべて手作業でひとつひとつ仕上げる一点物。同じものは、二度と作れません。</p>
+    <div class="hero-location sans">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1c-2.8 0-5 2.2-5 5 0 3.8 5 7 5 7s5-3.2 5-7c0-2.8-2.2-5-5-5z" stroke="#4A5D45" stroke-width="1.2"/><circle cx="7" cy="6" r="1.8" stroke="#4A5D45" stroke-width="1.2"/></svg>
+      佐賀県唐津市
+    </div>
+    <div class="hero-cta">
+      <a href="#shop" class="btn-primary">お店へのご案内</a>
+    </div>
+  </div>
+</section>
+
+<section class="story-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow sans">Our Story</div>
+      <h2>唐津の暮らしから、ものづくりを。</h2>
+    </div>
+    <div class="story-content">
+      <p>唐津で生まれ育ち、海と山に囲まれたこの土地の色や光からずっと影響を受けてきました。ある日、浜辺で拾った小さな貝殻がきっかけで、自分の手でアクセサリーを作るようになりました。</p>
+      <p>ひとつの作品に、平均して数時間から数日。すべて手作業で、同じ形は二度と作れません。だからこそ、身につけてくださる方にとって「自分だけの一点」になればと思っています。</p>
+      <p>唐津の小さな工房から、日々のなにげない瞬間を彩る、そんなアクセサリーをお届けしています。</p>
+      <div class="story-signature sans">— 工房主より</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow sans">Gallery</div>
+      <h2>作品のご紹介</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="10" stroke="#fff" stroke-width="1.5"/><path d="M24 28v14M18 42h12" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="label sans">ネックレス</div>
+      </div>
+      <div class="gallery-item">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#fff" stroke-width="1.5"/><circle cx="24" cy="24" r="5" stroke="#fff" stroke-width="1.5"/></svg>
+        <div class="label sans">ピアス</div>
+      </div>
+      <div class="gallery-item">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="24" rx="16" ry="10" stroke="#fff" stroke-width="1.5"/></svg>
+        <div class="label sans">リング</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--white);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow sans">Our Craft</div>
+      <h2>大切にしていること</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 3v20M3 13h20" stroke="#C97D5D" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3 class="sans">すべて一点物</h3>
+        <p class="sans">同じ材料でも、同じ形には二度と仕上がりません。あなただけの一点をお選びいただけます。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M6 20l6-14 8 14" stroke="#C97D5D" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3 class="sans">唐津の自然から</h3>
+        <p class="sans">地元の海や山で出会った色や形からインスピレーションを受け、素材を選んでいます。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="9" stroke="#C97D5D" stroke-width="1.5"/><path d="M13 8v5l4 2" stroke="#C97D5D" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3 class="sans">丁寧な手仕事</h3>
+        <p class="sans">一つひとつ手作業で、時間をかけて仕上げています。長く身につけていただけるように。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="voice-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow sans">Voice</div>
+      <h2>お客様の声</h2>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card">
+        <p class="sans">プレゼントに選びましたが、世界に一つだけというのがとても喜ばれました。唐津らしい色合いも素敵です。</p>
+        <div class="voice-name">唐津市 M様</div>
+      </div>
+      <div class="voice-card">
+        <p class="sans">普段使いできる繊細なデザインで、毎日身につけています。お店で作り手の方とお話しできたのも良い思い出です。</p>
+        <div class="voice-name">唐津市 K様</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shop-section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow sans">Shop Information</div>
+      <h2>お店のご案内</h2>
+    </div>
+    <div class="shop-info">
+      <div class="shop-row">
+        <div class="label">住所</div>
+        <div class="value">佐賀県唐津市〇〇町1-2-3</div>
+      </div>
+      <div class="shop-row">
+        <div class="label">営業時間</div>
+        <div class="value">10:00〜18:00<small>火曜定休</small></div>
+      </div>
+      <div class="shop-row">
+        <div class="label">電話番号</div>
+        <div class="value">0955-00-0000</div>
+      </div>
+      <div class="shop-row">
+        <div class="label">駐車場</div>
+        <div class="value">店舗前に2台分あり</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>唐津で、あなただけの一点を。</h2>
+    <p class="sans">ご来店をお待ちしております。オーダーメイドのご相談も承っております。</p>
+    <a href="#" class="btn-primary">LINEでお問い合わせ</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 手仕事アクセサリー工房 (唐津). All rights reserved.
+</footer>
+
+</body>
+</html>
