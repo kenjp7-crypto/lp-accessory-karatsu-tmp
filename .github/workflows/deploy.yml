@@ -1,0 +1,31 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Create Netlify site if not exists, then deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          SITE_NAME="${REPO_NAME}"
+
+          # サイトが存在するか確認、なければ作成
+          if ! netlify api getSite --data "{\"site_id\": \"${SITE_NAME}\"}" > /dev/null 2>&1; then
+            echo "Creating new site: ${SITE_NAME}"
+            netlify sites:create --name "${SITE_NAME}" --account-slug kenjp7-crypto || true
+          fi
+
+          # デプロイ実行(サイト名をそのままターゲットに)
+          netlify deploy --prod --dir="." --site="${SITE_NAME}" --auth="${NETLIFY_AUTH_TOKEN}"
