@@ -14,17 +14,38 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Create Netlify site if not exists, then deploy
+      - name: Create site and get site ID
+        id: create_site
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
-          SITE_NAME="${REPO_NAME}"
 
-          # サイトが存在するか確認、なければ作成(account-slugを指定せずデフォルトチームを使う)
-          if ! netlify api getSite --data "{\"site_id\": \"${SITE_NAME}\"}" > /dev/null 2>&1; then
-            echo "Creating new site: ${SITE_NAME}"
-            netlify sites:create --name "${SITE_NAME}" || true
+          # まず既存サイトの一覧からIDを探す
+          SITE_ID=$(netlify api listSites --data '{}' 2>/dev/null | python3 -c "
+          import json,sys
+          try:
+              sites = json.load(sys.stdin)
+              for s in sites:
+                  if s.get('name') == '${REPO_NAME}':
+                      print(s['site_id'])
+                      break
+          except Exception:
+              pass
+          ")
+
+          if [ -z "$SITE_ID" ]; then
+            echo "No existing site found. Creating new site: ${REPO_NAME}"
+            CREATE_OUTPUT=$(netlify sites:create --name "${REPO_NAME}" --json 2>&1)
+            echo "$CREATE_OUTPUT"
+            SITE_ID=$(echo "$CREATE_OUTPUT" | python3 -c "import json,sys; print(json.load(sys.stdin).get('site_id',''))" 2>/dev/null)
           fi
 
-          netlify deploy --prod --dir="." --site="${SITE_NAME}" --auth="${NETLIFY_AUTH_TOKEN}"
+          echo "Resolved SITE_ID=${SITE_ID}"
+          echo "site_id=${SITE_ID}" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify deploy --prod --dir="." --site="${{ steps.create_site.outputs.site_id }}" --auth="${NETLIFY_AUTH_TOKEN}"
