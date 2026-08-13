@@ -46,32 +46,17 @@
     letter-spacing:.18em;margin-top:3px;font-family:"Hiragino Sans",sans-serif;
   }
 
-  /* ===== Hero: 唐津の海をSVGで描画 ===== */
+  /* ===== Hero: 実写画像ベース ===== */
   .hero{
     position:relative;
     overflow:hidden;
-    height:520px;
+    height:560px;
     display:flex;align-items:flex-end;
-  }
-  .hero-sky{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg, #BFE3F4 0%, #7FC4E6 35%, var(--blue-light) 60%, var(--blue) 100%);
-  }
-  .hero-sun{
-    position:absolute;top:60px;right:80px;
-    width:90px;height:90px;border-radius:50%;
-    background:radial-gradient(circle, rgba(255,250,230,.95), rgba(255,250,230,0) 70%);
-  }
-  .hero-castle{
-    position:absolute;left:8%;bottom:180px;
-    opacity:.85;
-  }
-  .hero-pines{
-    position:absolute;bottom:150px;left:0;right:0;
-    height:80px;
-  }
-  .hero-wave{
-    position:absolute;bottom:0;left:0;right:0;height:180px;
+    background-image:
+      linear-gradient(180deg, rgba(15,76,117,.15) 0%, rgba(15,76,117,.65) 100%),
+      url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&q=80');
+    background-size:cover;
+    background-position:center;
   }
   .hero-content{
     position:relative;z-index:5;
@@ -126,6 +111,11 @@
     font-family:"Hiragino Sans",sans-serif;
     text-align:right;font-size:.85rem;color:var(--gray);margin-top:8px;
   }
+  .story-photo{
+    width:100%;height:280px;border-radius:8px;
+    background-size:cover;background-position:center;
+    margin-bottom:8px;
+  }
 
   /* ===== Products: 商品ラインナップ ===== */
   .product-grid{
@@ -137,14 +127,9 @@
     box-shadow:0 4px 18px rgba(15,76,117,.08);
   }
   .product-visual{
-    height:200px;position:relative;
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
+    height:220px;position:relative;
+    background-size:cover;background-position:center;
   }
-  .product-visual.necklace{background:linear-gradient(135deg, var(--blue-pale), var(--blue-light));}
-  .product-visual.earring{background:linear-gradient(135deg, var(--sand-deep), var(--gold) 160%);}
-  .product-visual.ring{background:linear-gradient(135deg, var(--blue-light), var(--blue-deep));}
-  .product-visual.bracelet{background:linear-gradient(135deg, var(--gold), var(--sand-deep) 160%);}
   .product-info{padding:20px 22px 24px;}
   .product-name{
     font-size:1.02rem;font-weight:700;color:var(--blue-deep);margin-bottom:6px;
@@ -271,45 +256,8 @@
   </div>
 </header>
 
-<!-- ===== Hero: 唐津の海をSVGイラストで表現 ===== -->
+<!-- ===== Hero: 実写画像 ===== -->
 <section class="hero">
-  <div class="hero-sky"></div>
-  <div class="hero-sun"></div>
-
-  <!-- 虹の松原 -->
-  <svg class="hero-pines" viewBox="0 0 800 80" preserveAspectRatio="none" width="100%" height="80">
-    <g fill="#0F4C75" opacity="0.55">
-      <ellipse cx="40" cy="65" rx="16" ry="30"/><rect x="37" y="60" width="6" height="20"/>
-      <ellipse cx="90" cy="60" rx="20" ry="35"/><rect x="87" y="55" width="6" height="25"/>
-      <ellipse cx="150" cy="68" rx="14" ry="26"/><rect x="147" y="62" width="6" height="18"/>
-      <ellipse cx="210" cy="58" rx="22" ry="38"/><rect x="207" y="52" width="6" height="28"/>
-      <ellipse cx="280" cy="65" rx="16" ry="30"/><rect x="277" y="60" width="6" height="20"/>
-      <ellipse cx="340" cy="60" rx="20" ry="35"/><rect x="337" y="55" width="6" height="25"/>
-      <ellipse cx="410" cy="66" rx="15" ry="28"/><rect x="407" y="61" width="6" height="19"/>
-      <ellipse cx="470" cy="58" rx="22" ry="38"/><rect x="467" y="52" width="6" height="28"/>
-      <ellipse cx="540" cy="64" rx="17" ry="31"/><rect x="537" y="59" width="6" height="21"/>
-      <ellipse cx="600" cy="60" rx="20" ry="35"/><rect x="597" y="55" width="6" height="25"/>
-      <ellipse cx="670" cy="66" rx="15" ry="28"/><rect x="667" y="61" width="6" height="19"/>
-      <ellipse cx="730" cy="58" rx="21" ry="37"/><rect x="727" y="52" width="6" height="27"/>
-    </g>
-  </svg>
-
-  <!-- 唐津城シルエット -->
-  <svg class="hero-castle" width="160" height="180" viewBox="0 0 160 180" fill="none">
-    <rect x="70" y="90" width="20" height="70" fill="#0F4C75"/>
-    <rect x="55" y="60" width="50" height="35" fill="#0F4C75"/>
-    <polygon points="50,60 80,35 110,60" fill="#0F4C75"/>
-    <rect x="65" y="30" width="30" height="25" fill="#0F4C75"/>
-    <polygon points="60,30 80,10 100,30" fill="#0F4C75"/>
-    <rect x="0" y="160" width="160" height="20" fill="#0F4C75"/>
-  </svg>
-
-  <!-- 波 -->
-  <svg class="hero-wave" viewBox="0 0 1000 180" preserveAspectRatio="none" width="100%" height="180">
-    <path d="M0,60 Q125,20 250,60 T500,60 T750,60 T1000,60 L1000,180 L0,180 Z" fill="var(--blue)" opacity="0.9"/>
-    <path d="M0,90 Q125,50 250,90 T500,90 T750,90 T1000,90 L1000,180 L0,180 Z" fill="var(--blue-deep)"/>
-  </svg>
-
   <div class="wrap hero-content">
     <div class="hero-eyebrow">KARATSU · SAGA</div>
     <h1>唐津の海の色を、<br>身につける。<span class="accent">一点物</span>のアクセサリー。</h1>
@@ -326,6 +274,7 @@
       <h2>虹の松原と玄界灘のまちから。</h2>
     </div>
     <div class="story-content">
+      <div class="story-photo" style="background-image:url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80');"></div>
       <p>唐津で生まれ育ち、虹の松原と玄界灘の色にずっと影響を受けてきました。ある日、浜辺で拾った小さなシーグラスがきっかけで、自分の手でアクセサリーを作るようになりました。</p>
       <p>ひとつの作品に、平均して数時間から数日。すべて手作業で、同じ形は二度と作れません。だからこそ、身につけてくださる方にとって「自分だけの一点」になればと思っています。</p>
       <p>唐津の小さな工房から、海の記憶を閉じ込めたアクセサリーをお届けしています。</p>
@@ -335,36 +284,8 @@
 </section>
 
 <!-- 唐津城と海の風景ストリップ -->
-<section class="landscape-section">
-  <svg width="100%" height="260" viewBox="0 0 1000 260" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#BFE3F4"/>
-        <stop offset="100%" stop-color="#7FC4E6"/>
-      </linearGradient>
-      <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#4FA8D8"/>
-        <stop offset="100%" stop-color="#0F4C75"/>
-      </linearGradient>
-    </defs>
-    <rect width="1000" height="160" fill="url(#skyGrad)"/>
-    <rect y="160" width="1000" height="100" fill="url(#seaGrad)"/>
-    <g fill="#0F4C75" opacity="0.4">
-      <ellipse cx="120" cy="150" rx="20" ry="34"/><rect x="116" y="145" width="8" height="24"/>
-      <ellipse cx="180" cy="140" rx="26" ry="42"/><rect x="176" y="133" width="8" height="30"/>
-      <ellipse cx="850" cy="148" rx="22" ry="36"/><rect x="846" y="142" width="8" height="25"/>
-      <ellipse cx="910" cy="138" rx="26" ry="42"/><rect x="906" y="131" width="8" height="30"/>
-    </g>
-    <g opacity="0.55">
-      <rect x="460" y="90" width="24" height="70" fill="#0F4C75"/>
-      <rect x="440" y="60" width="64" height="35" fill="#0F4C75"/>
-      <polygon points="430,60 472,25 514,60" fill="#0F4C75"/>
-      <rect x="452" y="28" width="40" height="28" fill="#0F4C75"/>
-      <polygon points="446,28 472,4 498,28" fill="#0F4C75"/>
-    </g>
-    <path d="M0,180 Q250,160 500,180 T1000,180 L1000,260 L0,260 Z" fill="#0F4C75" opacity="0.5"/>
-  </svg>
-  <div class="landscape-caption sans">唐津城と玄界灘 — 工房から望む景色</div>
+<section class="landscape-section" style="background-image:linear-gradient(180deg, rgba(15,76,117,.1) 0%, rgba(15,76,117,.5) 100%), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=80'); background-size:cover; background-position:center;">
+  <div class="landscape-caption sans">玄界灘 — 工房から望む景色</div>
 </section>
 
 <section style="background:var(--white);">
@@ -403,12 +324,7 @@
     </div>
     <div class="product-grid">
       <div class="product-card">
-        <div class="product-visual necklace">
-          <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
-            <path d="M15 15 Q45 55 75 15" stroke="#fff" stroke-width="2.5" fill="none"/>
-            <circle cx="45" cy="52" r="9" fill="#fff" opacity="0.9"/>
-          </svg>
-        </div>
+        <div class="product-visual" style="background-image:url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=80');"></div>
         <div class="product-info">
           <div class="product-name">シーグラスネックレス「玄界灘」</div>
           <div class="product-desc sans">唐津の浜で拾ったシーグラスを一点ずつ配置。深い青が特徴です。</div>
@@ -417,14 +333,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-visual earring">
-          <svg width="80" height="90" viewBox="0 0 80 90" fill="none">
-            <circle cx="25" cy="30" r="10" fill="#fff" opacity="0.95"/>
-            <path d="M25 40v20" stroke="#fff" stroke-width="2"/>
-            <circle cx="55" cy="30" r="10" fill="#fff" opacity="0.95"/>
-            <path d="M55 40v20" stroke="#fff" stroke-width="2"/>
-          </svg>
-        </div>
+        <div class="product-visual" style="background-image:url('https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=80');"></div>
         <div class="product-info">
           <div class="product-name">砂浜ピアス「白砂」</div>
           <div class="product-desc sans">唐津の白い砂浜をイメージした、繊細で軽やかな一組。</div>
@@ -433,12 +342,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-visual ring">
-          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-            <circle cx="35" cy="35" r="22" stroke="#fff" stroke-width="4" fill="none"/>
-            <circle cx="35" cy="15" r="6" fill="#fff"/>
-          </svg>
-        </div>
+        <div class="product-visual" style="background-image:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80');"></div>
         <div class="product-info">
           <div class="product-name">波紋リング「さざなみ」</div>
           <div class="product-desc sans">水面の波紋をモチーフにした、重ね付けもできるシンプルなリング。</div>
@@ -447,14 +351,7 @@
       </div>
 
       <div class="product-card">
-        <div class="product-visual bracelet">
-          <svg width="90" height="60" viewBox="0 0 90 60" fill="none">
-            <path d="M10 30 Q45 5 80 30 Q45 55 10 30" stroke="#fff" stroke-width="3" fill="none"/>
-            <circle cx="20" cy="28" r="4" fill="#fff"/>
-            <circle cx="45" cy="15" r="4" fill="#fff"/>
-            <circle cx="70" cy="28" r="4" fill="#fff"/>
-          </svg>
-        </div>
+        <div class="product-visual" style="background-image:url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80');"></div>
         <div class="product-info">
           <div class="product-name">松原ブレスレット「虹の松」</div>
           <div class="product-desc sans">虹の松原の緑をイメージした天然石を使用。5連の華やかな一本。</div>
